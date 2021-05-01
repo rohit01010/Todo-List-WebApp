@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+:root {
+  --white: #fff;
+  --darkPurple: #1b1935;
+  --purple: #1f1d3b;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  left: -10px;
+}
+*::-webkit-scrollbar-track {
+  background: #0b0b14;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgb(72, 70, 78);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgb(28, 30, 36);
+}
+body {
+  margin: 0;
+  font-family: "Josefin Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--black);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
