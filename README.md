@@ -1,6 +1,6 @@
 ![Todo List Website](https://github.com/rohit01010/Todo-List-App/blob/main/WebsiteImage.png)
 
-## <a href="https://todo-5f8b0.web.app/">LIVE DEMO</a>
+## <a href="https://todolist-60f09.web.app/">LIVE DEMO</a>
 
 ## Description
 
@@ -36,4 +36,4 @@ This will download all the node modules required
 
 ### Star this repository if you like this project
 
-### If you have any doubts and suggesstion regarding this project feel free to contact me at <a href="https://www.linkedin.com/in/rohit-bhagat-2833801b1/">https://www.linkedin.com/in/rohit-bhagat-2833801b1/</a>
+#### If you have any doubts and suggesstion regarding this project feel free to contact me at <a href="https://www.linkedin.com/in/rohit-bhagat-2833801b1/">https://www.linkedin.com/in/rohit-bhagat-2833801b1/</a>
