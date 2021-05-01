@@ -14,7 +14,7 @@ This is a React js and firebase based Todo list web-app.
 
 ### Fork and clone it on your desktop.
 
-### run command: npm install
+### Run command: npm install
 
 Before running this command make sure you have node installed in your PC.
 This will download all the node modules required
@@ -28,7 +28,7 @@ This will download all the node modules required
 - Click on setting icon present on right-side of Project Overview, then click on project setting and copy data present in general->Your apps->Firebase SDK snippet->Config->const firebaseConfig = {
 - Now go to project on your pc and go to the file src->firebase.js and paste the data copied in last step inside: const firebaseApp = firebase.initializeApp({
 
-### run command: npm start
+### Run command: npm start
 
 - This will start your app at http://localhost:3000/
 
@@ -36,4 +36,4 @@ This will download all the node modules required
 
 ### Star this repository if you like this project
 
-### If you have any doubts and suggesstion regarding this project feel free to contact me at <a href="https://www.linkedin.com/in/rohit-bhagat-2833801b1/">https://www.linkedin.com/in/rohit-bhagat-2833801b1/</a>
+If you have any doubts and suggesstion regarding this project feel free to contact me at <a href="https://www.linkedin.com/in/rohit-bhagat-2833801b1/">https://www.linkedin.com/in/rohit-bhagat-2833801b1/</a>
