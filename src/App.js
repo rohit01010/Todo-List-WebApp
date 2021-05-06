@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrash,
   faEdit,
-  faPlus,
   faCheck,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
@@ -76,89 +75,97 @@ function App() {
         </div>
         <div className="App__display">
           <ul>
-            {todos
-              .sort((a, b) => (a.status == true && b.status == false ? 1 : -1))
-              .map((todo) => {
-                if (
-                  currTask == 0 ||
-                  (currTask == 1 && todo.status == false) ||
-                  (currTask == 2 && todo.status == true)
-                ) {
-                  return (
-                    <>
-                      <li>
-                        <div className="checkbox__cover">
-                          <input
-                            type="checkbox"
-                            checked={todo.status}
-                            onChange={(e) => {
-                              db.collection("users")
-                                .doc(todo.id)
-                                .update({ status: e.target.checked });
-                            }}
-                          />
-                        </div>
-                        <p
-                          style={
-                            todo.status
-                              ? { textDecoration: "line-through" }
-                              : { textDecoration: "none" }
-                          }
-                        >
-                          {todo.todo}
-                        </p>
+            {todos.map((todo) => {
+              if (
+                currTask === 0 ||
+                (currTask === 1 && todo.status === false) ||
+                (currTask === 2 && todo.status === true)
+              ) {
+                return (
+                  <>
+                    <li>
+                      <div className="checkbox__cover">
+                        <input
+                          type="checkbox"
+                          checked={todo.status}
+                          onChange={(e) => {
+                            db.collection("users")
+                              .doc(todo.id)
+                              .update({ status: e.target.checked });
+                          }}
+                        />
+                      </div>
+                      <p
+                        style={
+                          todo.status
+                            ? { textDecoration: "line-through" }
+                            : { textDecoration: "none" }
+                        }
+                      >
+                        {todo.todo}
+                      </p>
+                      <button
+                        onClick={() => {
+                          setEditInput(todo.todo);
+                          setEditToggle(todo.id);
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
+                      <button
+                        onClick={() => {
+                          db.collection("users").doc(todo.id).delete();
+                          // setTodos(todos.filter((itm) => todo.id !== itm.id));
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                    </li>
+                    {editToggle === todo.id ? (
+                      <li className="editItem">
+                        <input
+                          value={editInput}
+                          onChange={(e) => {
+                            setEditInput(e.target.value);
+                          }}
+                        ></input>
                         <button
                           onClick={() => {
-                            setEditInput(todo.todo);
-                            setEditToggle(todo.id);
+                            db.collection("users").doc(todo.id).update({
+                              todo: editInput,
+                            });
+                            // setTodos(
+                            //   todos.map((t) => {
+                            //     if (t.id === todo.id) {
+                            //       return {
+                            //         ...t,
+                            //         todo: editInput,
+                            //       };
+                            //     }
+                            //   })
+                            // );
+                            setEditInput("");
+                            setEditToggle("");
                           }}
                         >
-                          <FontAwesomeIcon icon={faEdit} />
+                          <FontAwesomeIcon icon={faCheck} />
                         </button>
                         <button
-                          onClick={() =>
-                            db.collection("users").doc(todo.id).delete()
-                          }
+                          onClick={() => {
+                            setEditInput("");
+                            setEditToggle("");
+                          }}
                         >
-                          <FontAwesomeIcon icon={faTrash} />
+                          <FontAwesomeIcon icon={faTimes} />
                         </button>
                       </li>
-                      {editToggle == todo.id ? (
-                        <li className="editItem">
-                          <input
-                            value={editInput}
-                            onChange={(e) => {
-                              setEditInput(e.target.value);
-                            }}
-                          ></input>
-                          <button
-                            onClick={() => {
-                              db.collection("users").doc(todo.id).update({
-                                todo: editInput,
-                              });
-
-                              setEditInput("");
-                              setEditToggle("");
-                            }}
-                          >
-                            <FontAwesomeIcon icon={faCheck} />
-                          </button>
-                          <button
-                            onClick={() => {
-                              setEditInput("");
-                              setEditToggle("");
-                            }}
-                          >
-                            <FontAwesomeIcon icon={faTimes} />
-                          </button>
-                        </li>
-                      ) : (
-                        <></>
-                      )}
-                    </>
-                  );
-                }
-              })}
+                    ) : (
+                      <></>
+                    )}
+                  </>
+                );
+              }
+            })}
           </ul>
         </div>
         <div className="App_controls">
@@ -169,11 +176,9 @@ function App() {
               style={{ width: markerWidth, left: markerLeft }}
             ></span>
             <a
-              className={currTask == 0 ? "active" : ""}
+              className={currTask === 0 ? "active" : ""}
               onClick={(e) => {
                 setCurrTask(0);
-                console.log(e);
-
                 setWidth(e.target.offsetWidth + "px");
                 setLeft(e.target.offsetLeft + "px");
               }}
@@ -181,11 +186,9 @@ function App() {
               All
             </a>
             <a
-              className={currTask == 1 ? "active" : ""}
+              className={currTask === 1 ? "active" : ""}
               onClick={(e) => {
                 setCurrTask(1);
-                console.log(e);
-
                 setWidth(e.target.offsetWidth + "px");
                 setLeft(e.target.offsetLeft + "px");
               }}
@@ -193,10 +196,9 @@ function App() {
               Active
             </a>
             <a
-              className={currTask == 2 ? "active" : ""}
+              className={currTask === 2 ? "active" : ""}
               onClick={(e) => {
                 setCurrTask(2);
-                console.log(e);
                 setWidth(e.target.offsetWidth + "px");
                 setLeft(e.target.offsetLeft + "px");
               }}
@@ -213,6 +215,7 @@ function App() {
                 todos.map((todo) => {
                   if (todo.status === true) {
                     db.collection("users").doc(todo.id).delete();
+                    // setTodos(todos.filter((itm) => todo.id !== itm.id));
                   }
                 });
               }
